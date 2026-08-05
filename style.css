@@ -1,0 +1,118 @@
+/* ==========================================================================
+   PV INCONS - GLOBAL STYLESHEET (style.css)
+   ========================================================================== */
+
+/* 1. THƯƠNG HIỆU & BIẾN MÀU TOÀN CỤC */
+:root {
+    --brand-blue: #10284c;
+    --brand-darkblue: #0b1c38;
+    --brand-orange: #f97316;
+    --brand-gold: #8c6239;
+}
+
+/* 2. HIỆU ỨNG CHUYỂN TRANG MƯỢT MÀ (VIEW TRANSITIONS & SPA) */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: 200ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+    animation: 200ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in;
+}
+
+@keyframes fade-out {
+    to { opacity: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+}
+
+/* Hiệu ứng hoán đổi nội dung <main> mượt mà khi dùng layout.js */
+main {
+    transition: opacity 0.22s ease-in-out, transform 0.22s ease-in-out;
+    will-change: opacity, transform;
+}
+
+/* 3. TÙY CHỈNH TOÀN TRANG (GLOBAL RESETS) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Tùy chỉnh màu khi bôi đen văn bản */
+::selection {
+    background-color: var(--brand-blue);
+    color: #ffffff;
+}
+
+/* Thanh cuộn trang (Custom Scrollbar) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* 4. NAVIGATION TAB & HEADER ANIMATION */
+.nav-tab-btn {
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+/* Thanh gạch chân trượt mượt từ giữa ra 2 bên */
+.nav-tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--brand-blue);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+}
+
+.nav-tab-btn:hover::after,
+.nav-tab-btn.active::after {
+    width: 100%;
+}
+
+.nav-tab-btn.active {
+    color: var(--brand-blue) !important;
+    font-weight: 700;
+}
+
+/* 5. CÁC COMPONENT DÙNG CHUNG */
+/* Card Lãnh đạo / Giới thiệu */
+.leadership-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 4px solid var(--brand-orange);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.leadership-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(249, 115, 22, 0.8) !important;
+    box-shadow: 0 20px 40px -10px rgba(249, 115, 22, 0.25), 0 0 20px rgba(249, 115, 22, 0.15);
+}

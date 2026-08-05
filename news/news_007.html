@@ -2,9 +2,10 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phân Tích Chiến Lược: PV Incons Mở Rộng Hợp Tác Thi Công Nhà Xưởng Tiền Chế 2026</title>
+    <title>Tin tức</title>
 
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +17,8 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- File CSS dùng chung -->
+    <link rel="stylesheet" href="/style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -117,6 +120,7 @@
             letter-spacing: -0.03em;
             margin-bottom: 20px;
             background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -514,8 +518,8 @@
 </head>
 
 <body>
+    <!-- 1. VỊ TRÍ ĐẶT HEADER -->
     <div id="header-placeholder"></div>
-
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-container">
@@ -978,10 +982,15 @@
 
     </div>
 
+    <!-- VỊ TRÍ ĐẶT FOOTER -->
     <div id="footer-placeholder"></div>
 
-    <script src="layout.js"></script>
-    <script> loadLayout('news_007');</script>
+    <!-- NHÚNG SCRIPT LAYOUT VỚI DẤU / -->
+    <script src="/layout.js"></script>
+       <script>
+        // Truyền 'news' để menu "Tin tức" trên Header vẫn sáng màu active
+        loadLayout('news_007'); 
+    </script>
 
     <!-- Mobile Menu Script -->
     <script>

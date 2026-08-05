@@ -32,49 +32,162 @@ window.googleTranslateElementInit = function () {
 };
 
 // ==========================================
+// CLIENT-SIDE ROUTER & HIỆU ỨNG CHUYỂN TAB MƯỢT
+// ==========================================
+function updateActiveTab(pageId) {
+    const allTabs = document.querySelectorAll('[data-tab]');
+    allTabs.forEach(el => {
+        if (el.classList.contains('nav-tab-btn')) {
+            el.classList.remove('border-brand-blue', 'text-brand-blue');
+            el.classList.add('border-transparent', 'text-slate-600');
+        }
+        if (el.classList.contains('mobile-tab-btn')) {
+            el.classList.remove('text-brand-blue', 'bg-blue-50');
+            el.classList.add('text-slate-700');
+        }
+    });
+
+    const activeTabs = document.querySelectorAll(`[data-tab="${pageId}"]`);
+    activeTabs.forEach(el => {
+        if (el.classList.contains('nav-tab-btn')) {
+            el.classList.add('border-brand-blue', 'text-brand-blue');
+            el.classList.remove('border-transparent', 'text-slate-600');
+        }
+        if (el.classList.contains('mobile-tab-btn')) {
+            el.classList.add('text-brand-blue', 'bg-blue-50');
+            el.classList.remove('text-slate-700');
+        }
+    });
+}
+
+function initClientRouter() {
+    if (window._routerInitialized) return;
+    window._routerInitialized = true;
+
+    document.addEventListener('click', async (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+
+        // Bắt các liên kết nội bộ file .html
+        if (href && href.endsWith('.html') && !href.startsWith('http') && !href.startsWith('#') && link.target !== '_blank') {
+            e.preventDefault();
+
+            const targetUrl = new URL(href, window.location.origin).pathname;
+            if (window.location.pathname === targetUrl) return;
+
+            await navigateToPage(targetUrl);
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        navigateToPage(window.location.pathname, false);
+    });
+}
+
+async function navigateToPage(url, pushState = true) {
+    const mainContent = document.querySelector('main');
+
+    // 1. Hiệu ứng Fade Out mượt mà cho nội dung cũ
+    if (mainContent) {
+        mainContent.style.opacity = '0';
+        mainContent.style.transform = 'translateY(6px)';
+        mainContent.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+    }
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Không thể tải trang');
+
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+
+        const newMain = doc.querySelector('main');
+        const newTitle = doc.querySelector('title');
+
+        setTimeout(() => {
+            // 2. Thay đổi ruột <main> và Tiêu đề trang
+            if (newMain && mainContent) {
+                mainContent.innerHTML = newMain.innerHTML;
+            }
+            if (newTitle) {
+                document.title = newTitle.text;
+            }
+
+            // 3. Cập nhật Tab active
+            const pageId = url.split('/').pop().replace('.html', '') || 'index';
+            updateActiveTab(pageId);
+
+            if (pushState) {
+                window.history.pushState({}, '', url);
+            }
+
+            // 4. Đóng mobile menu & cuộn mượt lên đầu
+            closeMobileMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 5. Nạp lại các tính năng phụ thuộc nội dung mới
+            if (pageId === 'index' || pageId === '') {
+                loadHomeNews();
+            }
+            initVisitorCounter();
+
+            // 6. Hiệu ứng Fade In nội dung mới
+            if (mainContent) {
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }
+        }, 200);
+
+    } catch (error) {
+        console.error('Lỗi chuyển trang mượt:', error);
+        window.location.href = url; // Fallback điều hướng truyền thống nếu có lỗi
+    }
+}
+
+// ==========================================
 // NẠP HEADER / FOOTER DỰ ÁN
 // ==========================================
 async function loadLayout(pageId) {
     try {
-        const [headerRes, footerRes] = await Promise.all([
-            fetch('header.html'),
-            fetch('footer.html')
-        ]);
+        // Chỉ nạp Header/Footer 1 lần nếu chưa có
+        if (!document.querySelector('header')) {
+            const [headerRes, footerRes] = await Promise.all([
+                fetch('/header.html'),
+                fetch('/footer.html')
+            ]);
 
-        const headerHtml = await headerRes.text();
-        const footerHtml = await footerRes.text();
+            const headerHtml = await headerRes.text();
+            const footerHtml = await footerRes.text();
 
-        const headerPlaceholder = document.getElementById('header-placeholder');
-        if (headerPlaceholder) {
-            headerPlaceholder.outerHTML = headerHtml;
-        }
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.outerHTML = headerHtml;
+            }
 
-        const footerPlaceholder = document.getElementById('footer-placeholder');
-        if (footerPlaceholder) {
-            footerPlaceholder.innerHTML = footerHtml;
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder) {
+                footerPlaceholder.innerHTML = footerHtml;
+            }
+
+            // Sự kiện toggle Menu Mobile
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Khởi tạo router chuyển tab mượt
+            initClientRouter();
         }
 
         // Highlight tab đang mở
-        const activeTabs = document.querySelectorAll(`[data-tab="${pageId}"]`);
-        activeTabs.forEach(el => {
-            if (el.classList.contains('nav-tab-btn')) {
-                el.classList.add('border-brand-blue', 'text-brand-blue');
-                el.classList.remove('border-transparent', 'text-slate-600');
-            }
-            if (el.classList.contains('mobile-tab-btn')) {
-                el.classList.add('text-brand-blue', 'bg-blue-50');
-                el.classList.remove('text-slate-700');
-            }
-        });
+        updateActiveTab(pageId);
 
-        // Sự kiện toggle Menu Mobile
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
     } catch (error) {
         console.error('Lỗi khi nạp Header/Footer:', error);
     }
@@ -95,7 +208,7 @@ async function loadHomeNews() {
     if (!placeholder) return;
 
     try {
-        const response = await fetch('news.html');
+        const response = await fetch('/news.html');
         const htmlText = await response.text();
 
         const parser = new DOMParser();

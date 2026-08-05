@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giải Pháp Xử Lý Lệch Ranh Thửa Đất & Quy Trình Trích Đo VN-2000 | PV INCONS</title>
+    <title>Tin tức</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- File CSS dùng chung -->
+    <link rel="stylesheet" href="/style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -25,7 +27,9 @@
 </head>
 
 <body class="bg-slate-50 text-slate-700 font-sans antialiased selection:bg-brand-blue selection:text-white">
+    <!-- 1. VỊ TRÍ ĐẶT HEADER -->
     <div id="header-placeholder"></div>
+    
     <!-- Main News Content Section -->
     <main class="py-8 sm:py-12 bg-slate-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -320,10 +324,15 @@
         </div>
     </main>
 
+    <!-- 2. VỊ TRÍ ĐẶT FOOTER -->
     <div id="footer-placeholder"></div>
 
-    <script src="layout.js"></script>
-    <script> loadLayout('news_008');</script>
+    <!-- 3. NHÚNG SCRIPT LAYOUT VỚI DẤU / -->
+    <script src="/layout.js"></script>
+    <script>
+        // Truyền 'news' để menu "Tin tức" trên Header vẫn sáng màu active
+        loadLayout('news_008'); 
+    </script>
 
     <!-- Mobile Menu Toggle Script -->
     <script>
