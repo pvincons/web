@@ -96,7 +96,60 @@ html {
     font-weight: 700;
 }
 
-/* 5. CÁC COMPONENT DÙNG CHUNG */
+/* 5. HIỆU ỨNG HERO TITLE & CHUYỂN ĐỘNG CHỮ (MOBILE & DESKTOP) */
+.hero-tag {
+    display: inline-block;
+    opacity: 0;
+    animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.hero-title {
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+/* Tùy chọn tiêu đề dạng ánh kim / shimmer chạy qua chữ */
+.hero-title-shimmer {
+    background: linear-gradient(110deg, #ffffff 35%, #f97316 50%, #ffffff 65%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards,
+               shimmerText 5s linear infinite;
+}
+
+/* Utility class cho các đoạn văn bản xuất hiện theo thứ tự (Staggered Delay) */
+.animate-slide-up {
+    opacity: 0;
+    animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+
+/* Keyframes hiệu ứng trượt từ dưới lên */
+@keyframes titleSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes hiệu ứng dải sáng kim loại */
+@keyframes shimmerText {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* 6. CÁC COMPONENT DÙNG CHUNG */
 /* Card Lãnh đạo / Giới thiệu */
 .leadership-card {
     background: rgba(15, 23, 42, 0.6);
@@ -115,4 +168,23 @@ html {
     transform: translateY(-6px);
     border-color: rgba(249, 115, 22, 0.8) !important;
     box-shadow: 0 20px 40px -10px rgba(249, 115, 22, 0.25), 0 0 20px rgba(249, 115, 22, 0.15);
+}
+
+/* 7. TOÀN CỤC TRÊN THIẾT BỊ DI ĐỘNG (MOBILE OPTIMIZATIONS) */
+@media (max-width: 768px) {
+    /* Giảm biên độ trượt trên mobile giúp chuyển động nhẹ nhàng, không giật màn hình */
+    @keyframes titleSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
 }
