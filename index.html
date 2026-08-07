@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PV INCONS - TRANG CHỦ</title>
+    <link rel="icon" type="image/png" href="img/LOGO_PVI.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Config Tailwind đồng bộ với CSS Variables -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1e68a8',
+                            darkblue: '#0d3d6b',
+                            orange: '#e87e23',
+                            gold: '#8c6239',
+                            gray: '#f4f6f9'
+                        }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- File CSS dùng chung -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonts chữ tiêu đề -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph Meta Tags (Dành cho Zalo, Facebook, Messenger) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pvincons.com/" />
+    <meta property="og:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
+    <meta property="og:description"
+        content="Chuyên cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
+    <meta property="og:image" content="https://pvincons.com/img/logo.png" />
+    <meta property="og:image:secure_url" content="https://pvincons.com/img/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CÔNG TY TNHH THƯƠNG MẠI VÀ XÂY DỰNG PV INCONS" />
+    <meta name="twitter:description"
+        content="Chuyên cung cấp giải pháp toàn diện từ Tư vấn, Quản lý Đầu tư; Thiết kế Kiến trúc theo tiêu chuẩn số BIM/VDC và Thi công Xây dựng; Cùng các Dịch vụ Pháp lý Dự án, Công trình chuyên nghiệp." />
+    <meta name="twitter:image" content="https://pvincons.com/img/logo.png" />
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-blue selection:text-white">
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Banner chính -->
+        <section
+            class="relative w-full h-[25vh] sm:h-[45vh] lg:h-[75vh] min-h-[200px] overflow-hidden bg-slate-900 flex items-center">
+            <div class="absolute inset-0 bg-cover bg-center"
+                style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black/40"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 w-full text-center text-white">
+                <!-- Tiêu đề chính -->
+                <h1
+                    class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold tracking-wide uppercase mb-3 drop-shadow-lg hero-title text-center">
+                    Kiến Tạo Tương Lai Vững Bền
+                </h1> <!-- Phụ đề -->
+                <p
+                    class="text-sm sm:text-lg md:text-xl lg:text-2xl text-slate-100 max-w-3xl mx-auto font-normal tracking-wide leading-relaxed hero-subtitle drop-shadow-md">
+                    Đầu tư - Xây dựng - Pháp lý
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide Dự án điển hình (6 Slide) -->
+        <section class="py-12 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-center mb-8">
+                    <div class="h-[1px] bg-slate-300 w-16 sm:w-36"></div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-[#8c6239] uppercase px-4 text-center tracking-widest">
+                        DỰ ÁN ĐIỂN HÌNH
+                    </h2>
+                    <div class="h-[1px] bg-slate-300 w-16 sm:w-36"></div>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto group">
+                    <!-- Nút chuyển trái -->
+                    <button onclick="prevLatestProject()"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+
+                    <!-- Nút chuyển phải -->
+                    <button onclick="nextLatestProject()"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+
+                    <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+                        <div id="latestProjectsTrack" class="flex transition-transform duration-700 ease-in-out">
+                            <a href="projects.html" class="w-full flex-shrink-0 block">
+                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
+                                    <img src="img/PC_05.png"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                                        alt="RESORT">
+                                </div>
+                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
+                                    <h3
+                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
+                                        RESORT
+                                    </h3>
+                                </div>
+                            </a>
+                            <a href="projects.html" class="w-full flex-shrink-0 block">
+                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
+                                    <img src="img/PC_02.png"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                                        alt="BIỆT THỰ">
+                                </div>
+                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
+                                    <h3
+                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
+                                        BIỆT THỰ
+                                    </h3>
+                                </div>
+                            </a>
+                            <a href="projects.html" class="w-full flex-shrink-0 block">
+                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
+                                    <img src="img/PC_03.png"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                                        alt="NHÀ HIỆN ĐẠI">
+                                </div>
+                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
+                                    <h3
+                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
+                                        NHÀ HIỆN ĐẠI
+                                    </h3>
+                                </div>
+                            </a>
+                            <a href="projects.html" class="w-full flex-shrink-0 block">
+                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
+                                    <img src="img/PC_06.png"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                                        alt="KHÁCH SẠN">
+                                </div>
+                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
+                                    <h3
+                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
+                                        KHÁCH SẠN
+                                    </h3>
+                                </div>
+                            </a>
+                            <a href="projects.html" class="w-full flex-shrink-0 block">
+                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
+                                    <img src="img/PC_04.png"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                                        alt="NHÀ THÉP CÔNG NGHIỆP">
+                                </div>
+                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
+                                    <h3
+                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
+                                        NHÀ THÉP CÔNG NGHIỆP
+                                    </h3>
+                                </div>
+                            </a>
+                            <a href="projects.html" class="w-full flex-shrink-0 block">
+                                <div class="relative w-full aspect-[1.4/1] overflow-hidden">
+                                    <img src="img/PC_01.png"
+                                        class="w-full h-full object-cover hover:scale-105 transition duration-700"
+                                        alt="NHÀ PHỐ LIỀN KỀ">
+                                </div>
+                                <div class="p-4 sm:p-5 text-center bg-stone-50 border-t border-stone-100">
+                                    <h3
+                                        class="text-base sm:text-xl font-bold text-slate-800 tracking-wider uppercase hover:text-[#8c6239] transition">
+                                        NHÀ PHỐ LIỀN KỀ
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center space-x-2 mt-4">
+                        <button onclick="setLatestProject(0)"
+                            class="latest-dot w-6 h-2.5 rounded-full bg-[#8c6239] transition-all"></button>
+                        <button onclick="setLatestProject(1)"
+                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all"></button>
+                        <button onclick="setLatestProject(2)"
+                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all"></button>
+                        <button onclick="setLatestProject(3)"
+                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all"></button>
+                        <button onclick="setLatestProject(4)"
+                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all"></button>
+                        <button onclick="setLatestProject(5)"
+                            class="latest-dot w-2.5 h-2.5 rounded-full bg-slate-300 transition-all"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Summary -->
+        <section
+            class="py-20 bg-gradient-to-b from-slate-50 via-blue-50/30 to-slate-50 border-t border-slate-200 relative overflow-hidden">
+            <div
+                class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-4 uppercase tracking-tight">
+                    Chào mừng bạn đến với <br class="block sm:hidden">PV INCONS
+                </h2>
+
+                <p class="text-slate-600 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed font-medium">
+                    Đối tác tin cậy trong lĩnh vực <span class="text-slate-900 font-semibold">Tư vấn đầu tư</span>,
+                    <span class="text-slate-900 font-semibold">Thiết kế thi công xây dựng</span> và <span
+                        class="text-slate-900 font-semibold">Pháp lý bất động sản</span>.
+                </p>
+
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a href="about.html"
+                        class="group bg-brand-blue hover:bg-brand-darkblue text-white font-bold px-7 py-3.5 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-brand-blue/25 hover:shadow-xl hover:shadow-brand-blue/40 hover:-translate-y-1 flex items-center gap-2">
+                        <span>Tìm Hiểu Thêm</span>
+                        <i
+                            class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </a>
+
+                    <a href="services.html"
+                        class="bg-white hover:bg-slate-900 hover:text-white text-slate-700 border border-slate-300 hover:border-slate-900 font-bold px-7 py-3.5 rounded-xl text-sm transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-xs"></i>
+                        <span>Xem Dịch Vụ</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold text-brand-blue tracking-widest uppercase mb-2 block">THÔNG TIN MỚI
+                        CẬP NHẬT</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Thị Trường - Doanh Nghiệp</h2>
+                </div>
+
+                <div id="latest-news-placeholder" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Nội dung nhận từ news.html -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="layout.js"></script>
+    <script>
+        loadLayout('index');
+
+        let latestProjectIndex = 0;
+        const latestTrack = document.getElementById('latestProjectsTrack');
+        const latestDots = document.querySelectorAll('.latest-dot');
+        const totalLatestProjects = 6;
+
+        function setLatestProject(index) {
+            latestProjectIndex = index;
+            if (latestTrack) {
+                latestTrack.style.transform = `translateX(-${latestProjectIndex * 100}%)`;
+            }
+            latestDots.forEach((dot, i) => {
+                if (i === latestProjectIndex) {
+                    dot.classList.remove('bg-slate-300', 'w-2.5');
+                    dot.classList.add('bg-[#8c6239]', 'w-6');
+                } else {
+                    dot.classList.remove('bg-[#8c6239]', 'w-6');
+                    dot.classList.add('bg-slate-300', 'w-2.5');
+                }
+            });
+        }
+
+        function nextLatestProject() {
+            latestProjectIndex = (latestProjectIndex + 1) % totalLatestProjects;
+            setLatestProject(latestProjectIndex);
+        }
+
+        function prevLatestProject() {
+            latestProjectIndex = (latestProjectIndex - 1 + totalLatestProjects) % totalLatestProjects;
+            setLatestProject(latestProjectIndex);
+        }
+
+        const track = document.getElementById('latestProjectsTrack');
+
+        if (track) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 70;
+                const diffX = touchStartX - touchEndX;
+
+                if (diffX > swipeThreshold) {
+                    if (typeof nextLatestProject === 'function') nextLatestProject();
+                } else if (diffX < -swipeThreshold) {
+                    if (typeof prevLatestProject === 'function') prevLatestProject();
+                }
+            }
+        }
+        setInterval(nextLatestProject, 4000);
+    </script>
+</body>
+
+</html>
